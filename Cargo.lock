@@ -1693,6 +1693,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "bip39"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4559bb9225f8401dcea601cf8dc9ed81ea0dadd9cf7755fdefdd93ef7961e19e"
+dependencies = [
+ "bitcoin_hashes",
+ "serde",
+ "unicode-normalization",
+]
+
+[[package]]
 name = "bit-set"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2272,7 +2283,22 @@ dependencies = [
  "cpufeatures 0.2.17",
  "curve25519-dalek-derive",
  "digest 0.10.7",
- "fiat-crypto",
+ "fiat-crypto 0.2.9",
+ "rustc_version 0.4.1",
+ "subtle",
+]
+
+[[package]]
+name = "curve25519-dalek"
+version = "5.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b5eed333089e2e1c1ac8c6c0398e5e2497b4c9926ca6d0365ed1e099afa5bc23"
+dependencies = [
+ "cfg-if",
+ "cpufeatures 0.3.0",
+ "curve25519-dalek-derive",
+ "digest 0.11.2",
+ "fiat-crypto 0.3.0",
  "rustc_version 0.4.1",
  "subtle",
 ]
@@ -2471,7 +2497,7 @@ dependencies = [
  "elliptic-curve",
  "rfc6979",
  "serdect",
- "signature",
+ "signature 2.2.0",
  "spki",
 ]
 
@@ -2481,7 +2507,16 @@ version = "2.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "115531babc129696a58c64a4fef0a8bf9e9698629fb97e9e40767d235cfbcd53"
 dependencies = [
- "signature",
+ "signature 2.2.0",
+]
+
+[[package]]
+name = "ed25519"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "29fcf32e6c73d1079f83ab4d782de2d81620346a5f38c6237a86a22f8368980a"
+dependencies = [
+ "signature 3.0.0",
 ]
 
 [[package]]
@@ -2490,9 +2525,21 @@ version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "70e796c081cee67dc755e1a36a0a172b897fab85fc3f6bc48307991f64e4eca9"
 dependencies = [
- "curve25519-dalek",
- "ed25519",
+ "curve25519-dalek 4.1.3",
+ "ed25519 2.2.3",
  "sha2 0.10.9",
+ "subtle",
+]
+
+[[package]]
+name = "ed25519-dalek"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6ebaa1a2bf1290ab3bfe5a7b771d050ebffab2711c19a81691c683a5144a25de"
+dependencies = [
+ "curve25519-dalek 5.0.0",
+ "ed25519 3.0.0",
+ "sha2 0.11.0",
  "subtle",
 ]
 
@@ -2617,6 +2664,12 @@ name = "fiat-crypto"
 version = "0.2.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "28dea519a9695b9977216879a3ebfddf92f1c08c05d984f8996aecd6ecdc811d"
+
+[[package]]
+name = "fiat-crypto"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "64cd1e32ddd350061ae6edb1b082d7c54915b5c672c389143b9a63403a109f24"
 
 [[package]]
 name = "find-msvc-tools"
@@ -3507,7 +3560,7 @@ dependencies = [
  "pem",
  "serde",
  "serde_json",
- "signature",
+ "signature 2.2.0",
  "simple_asn1",
 ]
 
@@ -3523,7 +3576,7 @@ dependencies = [
  "once_cell",
  "serdect",
  "sha2 0.10.9",
- "signature",
+ "signature 2.2.0",
 ]
 
 [[package]]
@@ -3570,7 +3623,7 @@ dependencies = [
  "kobe-primitives",
  "kobe-spark",
  "kobe-sui",
- "kobe-svm",
+ "kobe-svm 2.0.1",
  "kobe-ton",
  "kobe-tron",
  "kobe-xrpl",
@@ -3596,6 +3649,22 @@ checksum = "91c1d3b08e2e2c427fbb5595797915bf4f0220e458a608b44b46daefc6264cbc"
 dependencies = [
  "bitcoin",
  "kobe-primitives",
+ "zeroize",
+]
+
+[[package]]
+name = "kobe-core"
+version = "4.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d6338f8c82b9b900c00c32720a6f7d03054b48927b9610ef28c66d7c187c58a9"
+dependencies = [
+ "bip39 3.0.0",
+ "ed25519-dalek 3.0.0",
+ "hex",
+ "hmac 0.13.0",
+ "rand_core 0.10.1",
+ "sha2 0.11.0",
+ "thiserror 2.0.20",
  "zeroize",
 ]
 
@@ -3649,8 +3718,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1b106d595600d316b17dbfe730998207ce9ab4a06f1895219ba81766295c554b"
 dependencies = [
  "bip32",
- "bip39",
- "ed25519-dalek",
+ "bip39 2.2.2",
+ "ed25519-dalek 2.2.0",
  "hex",
  "hmac 0.13.0",
  "k256",
@@ -3689,6 +3758,17 @@ checksum = "e08b378e6b907019edb76aedae8e0a80b8484b510e5ecf9178fee3bcb2a381c2"
 dependencies = [
  "bs58",
  "kobe-primitives",
+ "zeroize",
+]
+
+[[package]]
+name = "kobe-svm"
+version = "4.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "954d3282589284862d7acd8c606be176582abc0193603041f9679c6163992bea"
+dependencies = [
+ "bs58",
+ "kobe-core",
  "zeroize",
 ]
 
@@ -4033,7 +4113,7 @@ dependencies = [
  "kobe-fil",
  "kobe-spark",
  "kobe-sui",
- "kobe-svm",
+ "kobe-svm 4.0.0",
  "kobe-ton",
  "kobe-tron",
  "kobe-xrpl",
@@ -4634,6 +4714,12 @@ dependencies = [
  "getrandom 0.3.4",
  "serde",
 ]
+
+[[package]]
+name = "rand_core"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "63b8176103e19a2643978565ca18b50549f6101881c443590420e4dc998a3c69"
 
 [[package]]
 name = "rand_xorshift"
@@ -5447,6 +5533,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "signature"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "28d567dcbaf0049cb8ac2608a76cd95ff9e4412e1899d389ee400918ca7537f5"
+
+[[package]]
 name = "signer"
 version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5473,7 +5565,7 @@ version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e8127580b3f30edf50dcb15b432147f732254a5c5df1bfba502abf8129c83fd3"
 dependencies = [
- "ed25519-dalek",
+ "ed25519-dalek 2.2.0",
  "hex",
  "sha3 0.12.0",
  "signer-primitives",
@@ -5546,7 +5638,7 @@ version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8d12e69a218ffae81d62ef3852e85fa32242f87a7d0d41700d10748caf180bc7"
 dependencies = [
- "ed25519-dalek",
+ "ed25519-dalek 2.2.0",
  "hex",
  "k256",
  "thiserror 2.0.20",
@@ -5574,7 +5666,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d75305595e7ba2e2485dac526b975627e19df2f63a316bc05af1e859a1dd2840"
 dependencies = [
  "blake2",
- "ed25519-dalek",
+ "ed25519-dalek 2.2.0",
  "hex",
  "signer-primitives",
 ]
@@ -5586,7 +5678,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8d3af5766f48cdb41b47b4f1d37cdd2bf97dffd2090c9d50f5e4abf090eeba6e"
 dependencies = [
  "bs58",
- "ed25519-dalek",
+ "ed25519-dalek 2.2.0",
  "signer-primitives",
  "zeroize",
 ]
@@ -5597,7 +5689,7 @@ version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4bb56078a4dceeb51e6e1060222419d1ac96f073721f057750f477e2d16311b2"
 dependencies = [
- "ed25519-dalek",
+ "ed25519-dalek 2.2.0",
  "signer-primitives",
 ]
 
