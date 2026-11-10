@@ -1657,6 +1657,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32637268377fc7b10a8c6d51de3e7fba1ce5dd371a96e342b34e6078db558e7f"
 
 [[package]]
+name = "bech32"
+version = "0.12.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "efbd3e1070bbdf4cd88a75264e18e8a26f7cb5c6949eadf0ceb85fb159cf08f8"
+
+[[package]]
 name = "bimap"
 version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1693,6 +1699,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "bip39"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4559bb9225f8401dcea601cf8dc9ed81ea0dadd9cf7755fdefdd93ef7961e19e"
+dependencies = [
+ "bitcoin_hashes",
+ "serde",
+ "unicode-normalization",
+]
+
+[[package]]
 name = "bit-set"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1714,7 +1731,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39581299241111285f3268ba75ddf372746fd041620918b145c1af9d75e91b6c"
 dependencies = [
  "base58ck",
- "bech32",
+ "bech32 0.11.1",
  "bitcoin-io",
  "bitcoin-units",
  "bitcoin_hashes",
@@ -3568,7 +3585,7 @@ dependencies = [
  "kobe-fil",
  "kobe-nostr",
  "kobe-primitives",
- "kobe-spark",
+ "kobe-spark 2.0.1",
  "kobe-sui",
  "kobe-svm",
  "kobe-ton",
@@ -3600,12 +3617,28 @@ dependencies = [
 ]
 
 [[package]]
+name = "kobe-core"
+version = "4.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d6338f8c82b9b900c00c32720a6f7d03054b48927b9610ef28c66d7c187c58a9"
+dependencies = [
+ "bip32",
+ "bip39 3.0.0",
+ "hex",
+ "k256",
+ "rand_core 0.10.1",
+ "sha2 0.11.0",
+ "thiserror 2.0.20",
+ "zeroize",
+]
+
+[[package]]
 name = "kobe-cosmos"
 version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f33f4b47ccf25be5036e35474930b2af4e56ca992f362131bda2c8a7f605a739"
 dependencies = [
- "bech32",
+ "bech32 0.11.1",
  "kobe-primitives",
  "ripemd 0.2.0",
  "sha2 0.11.0",
@@ -3637,7 +3670,7 @@ version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "44bcc54d609ff9de52dd4a79f4ff21fe3be34bcde56a68a98d6723747e26ef36"
 dependencies = [
- "bech32",
+ "bech32 0.11.1",
  "kobe-primitives",
  "zeroize",
 ]
@@ -3649,7 +3682,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1b106d595600d316b17dbfe730998207ce9ab4a06f1895219ba81766295c554b"
 dependencies = [
  "bip32",
- "bip39",
+ "bip39 2.2.2",
  "ed25519-dalek",
  "hex",
  "hmac 0.13.0",
@@ -3665,8 +3698,18 @@ version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "57aac0d9e507c7db77cab73a60b40bfe7c9b1997fbc46e28abdb6722147386b8"
 dependencies = [
- "bech32",
+ "bech32 0.11.1",
  "kobe-primitives",
+]
+
+[[package]]
+name = "kobe-spark"
+version = "4.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c032b7949fb8d06eb6bdb3fe2712261df510efb24e3a1d2caf5c1e6a22c4b6b"
+dependencies = [
+ "bech32 0.12.0",
+ "kobe-core",
 ]
 
 [[package]]
@@ -4031,7 +4074,7 @@ dependencies = [
  "kobe-cosmos",
  "kobe-evm",
  "kobe-fil",
- "kobe-spark",
+ "kobe-spark 4.0.0",
  "kobe-sui",
  "kobe-svm",
  "kobe-ton",
@@ -4634,6 +4677,12 @@ dependencies = [
  "getrandom 0.3.4",
  "serde",
 ]
+
+[[package]]
+name = "rand_core"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "63b8176103e19a2643978565ca18b50549f6101881c443590420e4dc998a3c69"
 
 [[package]]
 name = "rand_xorshift"
@@ -5498,7 +5547,7 @@ version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "558998d674a8d942187c34c437671fa2c20f8d8be55244b610a3705479ed58bd"
 dependencies = [
- "bech32",
+ "bech32 0.11.1",
  "hex",
  "ripemd 0.2.0",
  "sha2 0.11.0",
@@ -5534,7 +5583,7 @@ version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d548f251a16075bcf7b558290b959f755ba9c987e1e1156ab1ff1eb654f06a3b"
 dependencies = [
- "bech32",
+ "bech32 0.11.1",
  "sha2 0.11.0",
  "signer-primitives",
  "zeroize",
@@ -5559,7 +5608,7 @@ version = "2.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "46dd6fedb98984ebf3afbf8c9483ff595038038cc58d4c21bcc403fb3326896d"
 dependencies = [
- "bech32",
+ "bech32 0.11.1",
  "hex",
  "ripemd 0.2.0",
  "sha2 0.11.0",
